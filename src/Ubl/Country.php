@@ -19,7 +19,7 @@ use Klsheng\Myinvois\Ubl\Constant\UblAttributes;
  */
 class Country implements ISerializable, IValidator
 {
-    private $identificationCode;
+    public $identificationCode;
     private $identificationCodeAttributes = [
         UblAttributes::LIST_ID => 'ISO3166-1',
         UblAttributes::LIST_AGENCY_ID => '6',
