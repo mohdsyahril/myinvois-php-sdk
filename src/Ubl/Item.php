@@ -204,6 +204,14 @@ class Item implements ISerializable, IValidator
             ]);
         }
 
+        if ($this->country !== null) {
+            $writer->write([
+                XmlSchema::CAC . 'OriginCountry' => [
+                    XmlSchema::CBC . 'IdentificationCode' => $this->country
+                ],
+            ]);
+        }
+
         if ($this->name !== null) {
             $writer->write([
                 XmlSchema::CBC . 'Name' => $this->name
@@ -242,11 +250,11 @@ class Item implements ISerializable, IValidator
             }
         }
 
-        if ($this->country !== null) {
-            $writer->write([
-                XmlSchema::CAC . 'OriginCountry' => $this->country,
-            ]);
-        }
+        //if ($this->country !== null) {
+            //$writer->write([
+               // XmlSchema::CAC . 'OriginCountry' => $this->country,
+            //]);
+        //}
     }
 
     /**
@@ -264,14 +272,6 @@ class Item implements ISerializable, IValidator
             $arrays['Description'][] = [
                 '_' => $this->description,
             ];
-        }
-        
-        if ($this->country !== null) {
-            $writer->write([
-                XmlSchema::CAC . 'OriginCountry' => [
-                    XmlSchema::CBC . 'IdentificationCode' => $this->country
-                ],
-            ]);
         }
 
         if ($this->name !== null) {
