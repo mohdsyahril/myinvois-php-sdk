@@ -168,7 +168,7 @@ class Item implements ISerializable, IValidator
      */
     public function setCountry(Country $country)
     {
-        $this->country = $country;
+        $this->country = $country->identificationCode;
         return $this;
     }
 
@@ -265,6 +265,14 @@ class Item implements ISerializable, IValidator
                 '_' => $this->description,
             ];
         }
+        
+        if ($this->country !== null) {
+            $writer->write([
+                XmlSchema::CAC . 'OriginCountry' => [
+                    XmlSchema::CBC . 'IdentificationCode' => $this->country
+                ],
+            ]);
+        }
 
         if ($this->name !== null) {
             $arrays['Name'][] = [
@@ -296,9 +304,9 @@ class Item implements ISerializable, IValidator
             }
         }
 
-        if ($this->country !== null) {
-            $arrays['OriginCountry'][] = $this->country;
-        }
+        //if ($this->country !== null) {
+            //$arrays['OriginCountry'][] = $this->country;
+        //}
 
         return $arrays;
     }
